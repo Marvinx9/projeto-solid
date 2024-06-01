@@ -1,7 +1,8 @@
+//single responsibility principle
 type CartItem = { name: string; price: number };
 type OrderStatus = 'open' | 'closed';
 
-export class ShoppingCart {
+export class ShoppingCartLegacy {
   private readonly _items: CartItem[] = [];
   private _orderStatus: OrderStatus = 'open';
 
@@ -55,7 +56,7 @@ console.log('Carrinho de compras foi limpo');
   }
 }
 
-const shoppingCart = new ShoppingCart();
+const shoppingCart = new ShoppingCartLegacy();
 shoppingCart.addItem({ name: 'Blusa', price: 49.9 });
 shoppingCart.addItem({ name: 'Cinto', price: 29.9 });
 shoppingCart.addItem({ name: 'Meia', price: 9.9 });
