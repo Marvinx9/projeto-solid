@@ -1,0 +1,27 @@
+/*
+Open/Closed principle
+Entidades devem estar abertas para extensão, porém fechadas para alteração
+*/
+import { Message } from './services/message';
+import { Order } from './classes/order';
+import { Product } from './classes/product';
+import { Save } from './services/saveOrder';
+import { ShoppingCart } from './classes/shopping_cart';
+import { /*FiftyPercentDisc, */ TenPercentDisc } from './classes/discount';
+
+const save = new Save();
+const tenPercentDisc = new TenPercentDisc();
+const message = new Message();
+const shoppingCart = new ShoppingCart(tenPercentDisc);
+const order = new Order(shoppingCart, message, save);
+
+shoppingCart.addItem(new Product('Blusa', 49.9));
+shoppingCart.addItem(new Product('Cinto', 29.9));
+shoppingCart.addItem(new Product('Meia', 9.9));
+
+console.log(shoppingCart.items);
+console.log(shoppingCart.total());
+console.log(shoppingCart.totalWithDiscount());
+console.log(order.orderStatus);
+order.checkout();
+console.log(order.orderStatus);
